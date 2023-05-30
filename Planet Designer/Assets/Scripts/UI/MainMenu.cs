@@ -148,27 +148,51 @@ public class MainMenu : MonoBehaviour
 
     // Button actions
 
+    public void NewPlanetNameOnEndEdit()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (newPlanetName.text.Length > 1)
+                CreatePlanet();
+        }  
+    }
+
     public void CreatePlanet()
     {
         if (newPlanetName.text == "")
             throw new System.Exception("No planet name entered");
 
         Destroy(GameObject.Find("Planet"));
+        StartCoroutine(Coroutine_CreatePlanet());
+    }
+
+    private IEnumerator Coroutine_CreatePlanet()
+    {
+        Debug.Log("Creating new planet with name \"" + newPlanetName.text + "\"");
         string presetName = presetsToggleGroup.GetFirstActiveToggle().GetComponent<PlanetCard>().name;
         ResourceManager.Instance.CreatePlanet(presetName, newPlanetName.text);
 
         myPlanetsSelection.SetActive(true);
         presetsSelection.SetActive(false);
-
         newPlanetPrompt.SetActive(false);
-        gameObject.SetActive(false);
         editorMenu.SetActive(true);
+        gameObject.SetActive(false);
+        yield return 0;
     }
 
     public void OpenSelectedPlanet()
     {
         Destroy(GameObject.Find("Planet"));
+        StartCoroutine(Coroutine_OpenSelectedPlanet());
+    }
+
+    private IEnumerator Coroutine_OpenSelectedPlanet()
+    {
+        yield return null;
         ResourceManager.Instance.LoadPlanet(selectedPlanetCard.name, false);
+        editorMenu.SetActive(true);
+        gameObject.SetActive(false);
+        yield return 0;
     }
 
     public void RenameSelectedPlanet()

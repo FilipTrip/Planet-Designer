@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.013959102, g: 0.01131221, b: 0.010591896, a: 1}
+  m_IndirectSpecularColor: {r: 0.016151011, g: 0.01308897, b: 0.012254497, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8274,6 +8274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f106f21a3f3a4645b298f4d65946d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  margin: {fileID: 1539655089}
   startMenu: {fileID: 9252606}
   mainMenu: {fileID: 599270982}
   editorMenu: {fileID: 663640168}
@@ -8951,7 +8952,7 @@ MonoBehaviour:
   useGlobalAngle: 1
   offsetAngle: 90
   offsetDistance: 12
-  offset: {x: -7.7134523, y: -9.1925335}
+  offset: {x: -7.7134514, y: -9.192533}
   color: {r: 0, g: 0, b: 0, a: 1}
   inset: 0
   blendMode: 0
@@ -9965,7 +9966,7 @@ PrefabInstance:
     - target: {fileID: 7139056702615295670, guid: fb5f88f28384242a89f5fe47297b9fb8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7139056702615295670, guid: fb5f88f28384242a89f5fe47297b9fb8,
         type: 3}
@@ -9991,7 +9992,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 663640166}
+      objectReference: {fileID: 599270980}
     - target: {fileID: 7139056702615295670, guid: fb5f88f28384242a89f5fe47297b9fb8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -10045,7 +10046,7 @@ PrefabInstance:
     - target: {fileID: 7139056702615295670, guid: fb5f88f28384242a89f5fe47297b9fb8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7139056702615295670, guid: fb5f88f28384242a89f5fe47297b9fb8,
         type: 3}
@@ -17329,7 +17330,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 599270982}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: CreatePlanet
+        m_MethodName: NewPlanetNameOnEndEdit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

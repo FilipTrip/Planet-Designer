@@ -42,9 +42,30 @@ public class Forest : Feature
 
         noise = new Noise(settings.seed.value);
 
-        foreach (Transform child in transform)
+        bool DisableColliders()
         {
-            Destroy(child.gameObject);
+            foreach (SelectablePrefab selectablePrefab in settings.prefabs)
+                if (selectablePrefab.prefab.GetComponent<Collider>())
+                    return true;
+            return false;
+        }
+
+        if (DisableColliders())
+        {
+            Collider collider;
+            foreach (Transform child in transform)
+            {
+                if (collider = child.GetComponent<Collider>())
+                    collider.enabled = false;
+                Destroy(child.gameObject);
+            }
+        }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
         // Generate trees using all zone points
@@ -58,12 +79,12 @@ public class Forest : Feature
     {
         // Get selected prefabs
 
-        List<GameObject> prefabs = new List<GameObject>();
+        List<SelectablePrefab> prefabs = new List<SelectablePrefab>();
 
         foreach (SelectablePrefab selectablePrefab in settings.prefabs)
         {
-            if (selectablePrefab.selected && selectablePrefab.prefab)
-                prefabs.Add(selectablePrefab.prefab);
+            if (selectablePrefab.selected && selectablePrefab.prefab && selectablePrefab.scale != 0f)
+                prefabs.Add(selectablePrefab);
         }
 
         if (prefabs.Count == 0)
@@ -71,7 +92,6 @@ public class Forest : Feature
 
         // Place prefabs in zone
 
-        int terrainLayer = LayerMask.NameToLayer("Terrain");
         RaycastHit raycastHit;
         GameObject go;
         float raycastDistance = Planet.Instance.TerrainSphere.ElevationRange.max + 1;
@@ -102,7 +122,8 @@ public class Forest : Feature
             float sample3 = noise.Evaluate(point * settings.seedScale * 3f).Remapped(-1f, 1f, 0f, 360f);
 
             // Instantiate object
-            go = Instantiate(prefabs[(int)sample2], transform);
+            go = Instantiate(prefabs[(int)sample2].prefab, transform);
+            go.transform.localScale *= prefabs[(int)sample2].scale;
             go.transform.position = raycastHit.point;
             go.transform.up = point;
             go.transform.Rotate(0f, sample3, 0f);

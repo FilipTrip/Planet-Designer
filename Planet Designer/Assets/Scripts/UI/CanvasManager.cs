@@ -6,6 +6,7 @@ public class CanvasManager : MonoBehaviour
 {
     public static CanvasManager Instance { get; private set; }
 
+    [SerializeField] private GameObject margin;
     [SerializeField] private GameObject startMenu;
     [SerializeField] private MainMenu mainMenu;
     [SerializeField] private EditorMenu editorMenu;
@@ -30,6 +31,12 @@ public class CanvasManager : MonoBehaviour
     public void RemovePlanetControlOverrider(Object obj)
     {
         planetControlOverriders.Remove(obj);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H) && Input.GetKey(KeyCode.LeftControl))
+            margin.SetActive(!margin.activeSelf);
     }
 
 }
