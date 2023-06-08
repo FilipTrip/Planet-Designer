@@ -6,9 +6,18 @@ using UnityEngine;
 public class NoiseLayer : SurfaceModifier
 {
     private Noise noise;
-    [Min(0f)] public float amplitude = 1f;
-    [Min(0f)] public float scale = 1f;
+
+    [Min(0f)]
+    [Tooltip("The amplitude of this NoiseLayer. Affects the magnitude of the terrain")]
+    public float amplitude = 1f;
+
+    [Min(0f)]
+    [Tooltip("The scale of this NoiseLayer. Affects the scale of the details in the terrain")]
+    public float scale = 1f;
+
+    [Tooltip("Allows you to manipulate the random values within the noise. This gives you control over the amplidude of the noise at certain values")]
     public AnimationCurve manipulation;
+
     public Seed seed;
 
     public override void Run(Sphere sphere)

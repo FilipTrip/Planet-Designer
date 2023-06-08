@@ -10,6 +10,7 @@ public class Sphere : MonoBehaviour
 {
     public enum SphereType { Ocean, Terrain }
 
+    [Tooltip("The settings used for this sphere")]
     [SerializeField] private SphereSettings settings;
     [SerializeField, HideInInspector] private SphereFace[] sphereFaces;
     [SerializeField, HideInInspector] private SphereInfo info;

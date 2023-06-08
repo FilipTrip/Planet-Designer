@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed:
     value: 4492
-  density: 19.9
-  seedScale: 9
+  density: 9.6
+  seedScale: 5.3
   avoidOcean: 1
   avoidObjects: 1
   prefabs:
   - prefab: {fileID: 160606, guid: faad5e043d9bc4001898db87f7497312, type: 3}
     selected: 1
+    scale: 1

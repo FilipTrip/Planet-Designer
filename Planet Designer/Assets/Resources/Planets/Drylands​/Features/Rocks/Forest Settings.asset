@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: Forest Settings
   m_EditorClassIdentifier: 
   seed:
-    value: 0
-  density: 50
-  seedScale: 10
-  avoidOcean: 1
+    value: -95
+  density: 16
+  seedScale: 10.2
+  avoidOcean: 0
   avoidObjects: 1
-  prefabs: []
+  prefabs:
+  - prefab: {fileID: 100000, guid: a7d8b4930aed6ec4c9fa956479d8716a, type: 3}
+    selected: 1
+    scale: 1
+  - prefab: {fileID: 207891145, guid: 20ae9eb2042a9a649bd7d5567eadd2fc, type: 3}
+    selected: 1
+    scale: 1
