@@ -17,6 +17,11 @@ public class EditorMenu : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        FeatureOverview.Instance.Refresh();
+    }
+
     public void SetHelpText(string text)
     {
         helpText.text = text;
@@ -57,12 +62,19 @@ public class EditorMenu : MonoBehaviour
         #endif
     }
 
-    public void NewForest()
+    public void NewLocalForest()
     {
-        string forestName = resourceManager.CreateForest(Planet.Instance.PlanetName, out ForestSettings forestSettings, out ZoneSettings zoneSettings);
-        Forest forest = Planet.Instance.AddForest(forestName, forestSettings, zoneSettings);
-        forest.GetComponent<Zone>().Select();
+        string forestName = resourceManager.CreateLocalForest(Planet.Instance.PlanetName, out LocalForestSettings forestSettings, out ZoneSettings zoneSettings);
+        LocalForest forest = FeatureManager.Instance.AddLocalForest(forestName, forestSettings, zoneSettings);
+        forest.Select();
+        FeatureOverview.Instance.Refresh();
+    }
 
+    public void NewGlobalForest()
+    {
+        string forestName = resourceManager.CreateGlobalForest(Planet.Instance.PlanetName, out GlobalForestSettings forestSettings);
+        GlobalForest forest = FeatureManager.Instance.AddGlobalForest(forestName, forestSettings);
+        forest.Select();
         FeatureOverview.Instance.Refresh();
     }
 

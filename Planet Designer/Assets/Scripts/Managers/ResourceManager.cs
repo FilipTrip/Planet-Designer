@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Linq;
 
 public class ResourceManager : MonoBehaviour
 {
@@ -99,19 +100,34 @@ public class ResourceManager : MonoBehaviour
 
         // Load features
 #if UNITY_EDITOR
-        string[] features = AssetDatabase.GetSubFolders("Assets" + slash + "Resources" + slash + "Planets" + slash + planetName + slash + "Features");
-        Debug.Log(features.Length);
-        foreach (string feature in features)
-        {
-            string featureName = feature.Substring(feature.LastIndexOf('/') + 1);
-            Debug.Log("Loading " + featureName);
+        string[] featurePaths = AssetDatabase.GetSubFolders("Assets" + slash + "Resources" + slash + "Planets" + slash + planetName + slash + "Features");
 
-            // All features are forests (needs a better check)
-            //if (featureName.Contains("Forest"))
+        foreach (string featurePath in featurePaths)
+        {
+            string featureName = RemovePath(featurePath);
+            string[] featureContents = Directory.GetFiles(featurePath);
+
+            for (int i = 0; i < featureContents.Length; ++i)
             {
-                ForestSettings forestSettings = Resources.Load<ForestSettings>(feature.Replace("Assets/Resources/", "") + "/Forest Settings");
-                ZoneSettings zoneSettings = Resources.Load<ZoneSettings>(feature.Replace("Assets/Resources/", "") + "/Zone Settings");
-                planet.AddForest(featureName, forestSettings, zoneSettings);
+                featureContents[i] = RemoveExtension(RemovePath(featureContents[i]));
+            }
+
+            if (featureContents.Contains("Local Forest Settings"))
+            {
+                LocalForestSettings forestSettings = Resources.Load<LocalForestSettings>(featurePath.Replace("Assets/Resources/", "") + "/Local Forest Settings");
+                ZoneSettings zoneSettings = Resources.Load<ZoneSettings>(featurePath.Replace("Assets/Resources/", "") + "/Zone Settings");
+                FeatureManager.Instance.AddLocalForest(featureName, forestSettings, zoneSettings);
+            }
+
+            else if (featureContents.Contains("Global Forest Settings"))
+            {
+                GlobalForestSettings forestSettings = Resources.Load<GlobalForestSettings>(featurePath.Replace("Assets/Resources/", "") + "/Global Forest Settings");
+                FeatureManager.Instance.AddGlobalForest(featureName, forestSettings);
+            }
+
+            else
+            {
+                Debug.LogWarning("Feature could not be classified: " + featurePath);
             }
         }
 #endif
@@ -164,28 +180,6 @@ public class ResourceManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Creates a folder with data for a forest and returns the feature's name
-    /// </summary>
-    public string CreateForest(string planetName, out ForestSettings forestSettings, out ZoneSettings zoneSettings)
-    {
-        zoneSettings = ScriptableObject.CreateInstance<ZoneSettings>();
-        forestSettings = ScriptableObject.CreateInstance<ForestSettings>();
-
-#if UNITY_EDITOR
-        string folderGUID = AssetDatabase.CreateFolder("Assets" + slash + "Resources" + slash + "Planets" + slash + planetName + slash + "Features", "Forest");
-        string folderPath = AssetDatabase.GUIDToAssetPath(folderGUID);
-
-        AssetDatabase.CreateAsset(zoneSettings, folderPath + slash + "Zone Settings.asset");
-        AssetDatabase.CreateAsset(forestSettings, folderPath + slash + "Forest Settings.asset");
-
-        forestSettings.seed.New();
-
-        return folderPath.Substring(folderPath.LastIndexOf('/') + 1);
-#endif
-        return null;
-    }
-
-    /// <summary>
     /// Renames a feature folder
     /// </summary>
     public void RenameFeature(string planetName, string featureName, string newFeatureName)
@@ -203,6 +197,60 @@ public class ResourceManager : MonoBehaviour
 #if UNITY_EDITOR
         AssetDatabase.DeleteAsset("Assets" + slash + "Resources" + slash + "Planets" + slash + planetName + slash + "Features" + slash + featureName);
 #endif
+    }
+
+    /// <summary>
+    /// Returns the file name and extension without the path
+    /// </summary>
+    private string RemovePath(string filePath)
+    {
+        return filePath.Substring(filePath.LastIndexOf('/') + 1);
+    }
+
+    /// <summary>
+    /// Returns the file name without the extension
+    /// </summary>
+    private string RemoveExtension(string fileName)
+    {
+        return fileName.Remove(fileName.LastIndexOf('.'));
+    }
+
+    /// <summary>
+    /// Creates a folder with data for a local forest and returns the feature's name
+    /// </summary>
+    public string CreateLocalForest(string planetName, out LocalForestSettings forestSettings, out ZoneSettings zoneSettings)
+    {
+        zoneSettings = ScriptableObject.CreateInstance<ZoneSettings>();
+        forestSettings = ScriptableObject.CreateInstance<LocalForestSettings>();
+
+#if UNITY_EDITOR
+        string folderGUID = AssetDatabase.CreateFolder("Assets" + slash + "Resources" + slash + "Planets" + slash + planetName + slash + "Features", "Local Forest");
+        string folderPath = AssetDatabase.GUIDToAssetPath(folderGUID);
+
+        AssetDatabase.CreateAsset(zoneSettings, folderPath + slash + "Zone Settings.asset");
+        AssetDatabase.CreateAsset(forestSettings, folderPath + slash + "Local Forest Settings.asset");
+        forestSettings.seed.New();
+        return folderPath.Substring(folderPath.LastIndexOf('/') + 1);
+#endif
+        return null;
+    }
+
+    /// <summary>
+    /// Creates a folder with data for a global forest and returns the feature's name
+    /// </summary>
+    public string CreateGlobalForest(string planetName, out GlobalForestSettings forestSettings)
+    {
+        forestSettings = ScriptableObject.CreateInstance<GlobalForestSettings>();
+
+#if UNITY_EDITOR
+        string folderGUID = AssetDatabase.CreateFolder("Assets" + slash + "Resources" + slash + "Planets" + slash + planetName + slash + "Features", "Global Forest");
+        string folderPath = AssetDatabase.GUIDToAssetPath(folderGUID);
+
+        AssetDatabase.CreateAsset(forestSettings, folderPath + slash + "Global Forest Settings.asset");
+        forestSettings.seed.New();
+        return folderPath.Substring(folderPath.LastIndexOf('/') + 1);
+#endif
+        return null;
     }
 
 }

@@ -17,8 +17,6 @@ public class Planet : MonoBehaviour
     [SerializeField] private Transform featuresParent;
     [SerializeField] private Transform objectsParent;
 
-    [SerializeField] private GameObject forestPrefab;
-
     private List<Feature> features = new List<Feature>();
 
     public static Planet Instance { get; private set; }
@@ -72,20 +70,11 @@ public class Planet : MonoBehaviour
             feature.Regenerate();
     }
 
-    public Forest AddForest(string forestName, ForestSettings forestSettings, ZoneSettings zoneSettings)
-    {
-        Forest forest = Instantiate(forestPrefab, featuresParent).GetComponent<Forest>();
-        forest.gameObject.name = forestName;
-        forest.Initialize(forestSettings, zoneSettings);
-        features.Add(forest);
-        return forest;
-    }
-
-    public void DeleteFeature(Feature feature)
+    public void RemoveFeature(Feature feature)
     {
         features.Remove(feature);
         Destroy(feature.gameObject);
-        GameObject.Find("Managers").GetComponent<ResourceManager>().DeleteFeature(planetName, feature.name);
+        ResourceManager.Instance.DeleteFeature(planetName, feature.name);
     }
 
     public void RandomizeSeeds()
@@ -100,10 +89,10 @@ public class Planet : MonoBehaviour
 
         // Look for all seeds in features and randomize them
 
-        Forest forest;
+        LocalForest forest;
         foreach (Transform feature in featuresParent)
         {
-            if (forest = feature.GetComponent<Forest>())
+            if (forest = feature.GetComponent<LocalForest>())
                 forest.Settings.seed.New();
         }
     }

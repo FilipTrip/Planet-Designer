@@ -49,7 +49,7 @@ public class Reticle : MonoBehaviour
         if (Physics.Raycast(ray, out raycastHit, 3000f, raycastLayerMask))
         {
             SetPinVisibility(true);
-            SetBrushVisibility(SelectionManager.Instance.Selectable);
+            SetBrushVisibility(FeatureManager.Instance.SelectedFeature);
         }
         else
         {
@@ -69,7 +69,7 @@ public class Reticle : MonoBehaviour
         pin.transform.localScale = originalPinScale * distance;
 
         // If brush is visible
-        if (SelectionManager.Instance.Selectable)
+        if (FeatureManager.Instance.SelectedFeature && FeatureManager.Instance.SelectedFeature.EnableBrush)
         {
             // Update brush angle
 
@@ -87,7 +87,7 @@ public class Reticle : MonoBehaviour
 
             // Update brush color
 
-            if (!SelectionManager.Instance.Selectable)
+            if (!FeatureManager.Instance.SelectedFeature)
                 SetBrushColor(new Color(1f, 1f, 1f, 2f));
 
             else if (Input.GetKey(KeyCode.LeftShift))

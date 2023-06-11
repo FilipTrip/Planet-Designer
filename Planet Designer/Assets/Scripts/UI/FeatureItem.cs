@@ -32,7 +32,7 @@ public class FeatureItem : MonoBehaviour
     // Called by feature button
     public void SelectFeature()
     {
-        SelectionManager.Instance.Select(feature.GetComponent<Zone>());
+        FeatureManager.Instance.Select(feature);
     }
 
     // Called by rename button
