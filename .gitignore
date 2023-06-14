@@ -81,6 +81,6 @@ crashlytics-build.properties
 # Ignore anything inside these folders
 */Screenshots/*
 */exr/*
-#Planet Designer/Assets/Resources/Planets/*
+Planet Designer/Assets/Resources/Planets/*
 
 
