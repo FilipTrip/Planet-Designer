@@ -71,11 +71,16 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+
+# ================================================
+
+
 # Ignore Mac DS_Store files
 .DS_Store
-Reflected/ProjectSettings/ShaderGraphSettings.asset
 
-# Ignore anything inside folders
+# Ignore anything inside these folders
 */Screenshots/*
 */exr/*
+Planet Designer/Assets/Resources/Planets/*
+
 
