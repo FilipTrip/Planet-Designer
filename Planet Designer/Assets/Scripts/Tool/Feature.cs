@@ -28,6 +28,8 @@ public abstract class Feature : MonoBehaviour
 
     public abstract void Regenerate();
 
+    public abstract void AutoRegenerate();
+
     public abstract void WhileSelected();
 
     public abstract bool CheckClickedOn();

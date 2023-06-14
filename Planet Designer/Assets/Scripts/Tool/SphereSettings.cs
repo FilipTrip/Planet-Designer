@@ -2,24 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Planet Designer/Sphere Settings")]
 public class SphereSettings : ScriptableObject
 {
-    private Sphere sphere;
+    private void Awake()
+    {
+        showNoiseLayers = name == "Terrain Settings";
+    }
+
+    [HideInInspector]
+    public Sphere sphere;
 
     [Tooltip("Whether or not to automatically regenerate this sphere and all dependent features when adjusting any of the values below")]
     public bool autoRegenerate = true;
 
-    [HideInInspector]
+    [Tooltip("Fixes normals along the edges of each mesh")]
     public bool fixEdgeNormals = true;
+
+    [Range(-1f, 1f)]
+    public float vertexDistributionBias = -0.06f;
 
     [Range(3, 256)]
     [Tooltip("The number of vertices along each side of each mesh used to construct this sphere")]
     public int resolution = 150;
-
-    //[Range(-0.2f, 0.0f)]
-    [Range(-1f, 1f), HideInInspector]
-    public float vertexDistributionBias = -0.06f;
 
     [Range(10, 600f)]
     [Tooltip("The radius of this sphere")]
@@ -31,15 +35,26 @@ public class SphereSettings : ScriptableObject
     [Tooltip("NoiseLayers used to deform this sphere into a planet-like surface. Two to four NoiseLayers are recommended")]
     public List<NoiseLayer> noiseLayers = new List<NoiseLayer>();
 
-    public void SetSphere(Sphere sphere)
-    {
-        this.sphere = sphere;
-    }
+    // Editor settings
 
-    private void OnValidate()
-    {
-        if (sphere && autoRegenerate)
-            sphere.Regenerate();
-    }
+    [HideInInspector] public bool showFixEdgeNormals = false;
+    [HideInInspector] public bool showVertexDistributionBias = false;
+    [HideInInspector] public bool showMaterial = false;
+    [HideInInspector] public bool showNoiseLayers = true;
 
+    // Context menu methods
+
+    [ContextMenu("Toggle Fix Edge Normals")]
+    private void ToggleFixEdgeNormals() => showFixEdgeNormals = !showFixEdgeNormals;
+
+    [ContextMenu("Toggle Vertex Distribution Bias")]
+    private void ToggleVertexDistributionBias() => showVertexDistributionBias = !showVertexDistributionBias;
+
+    [ContextMenu("Toggle Material")]
+    private void ToggleMaterial() => showMaterial = !showMaterial;
+
+    [ContextMenu("Toggle Noise Layers")]
+    private void ToggleNoiseLayers() => showNoiseLayers = !showNoiseLayers;
+
+    
 }

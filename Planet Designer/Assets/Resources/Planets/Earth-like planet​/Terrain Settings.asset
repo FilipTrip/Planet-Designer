@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9a301fc43bb45bda3703b0d594caa3, type: 3}
   m_Name: Terrain Settings
   m_EditorClassIdentifier: 
+  sphere: {fileID: 0}
   autoRegenerate: 1
   fixEdgeNormals: 1
-  resolution: 130
   vertexDistributionBias: -0.06
+  resolution: 106
   radius: 100
   material: {fileID: 2100000, guid: e1e3c4a4ce0b24bff9cd849a4b047690, type: 2}
   noiseLayers:
@@ -171,3 +172,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     seed:
       value: -132
+  showFixEdgeNormals: 0
+  showVertexDistributionBias: 0
+  showMaterial: 0
+  showNoiseLayers: 1

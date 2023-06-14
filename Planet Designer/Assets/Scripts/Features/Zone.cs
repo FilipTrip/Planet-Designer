@@ -17,7 +17,7 @@ public class Zone : MonoBehaviour
         this.feature = feature;
     }
 
-    public void ManualUpdate()
+    public void WhileSelected()
     {
         if (CameraController.Instance.BeingControlled || !Reticle.Instance.OnPlanetSurface || !Input.GetMouseButton(0))
             return;
@@ -96,7 +96,7 @@ public class Zone : MonoBehaviour
                 // Use smart regeneration if feature is forest
                 LocalForest forest;
                 if (forest = feature.GetComponent<LocalForest>())
-                    forest.SmartRegen_AddTrees(affectedPoints);
+                    forest.SmartRegen_PlaceTrees(affectedPoints);
                 else
                     feature.Regenerate();
             }

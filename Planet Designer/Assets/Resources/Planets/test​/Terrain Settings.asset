@@ -17,12 +17,12 @@ MonoBehaviour:
   fixEdgeNormals: 1
   vertexDistributionBias: -0.06
   resolution: 130
-  radius: 120
-  material: {fileID: 2100000, guid: 560c0afea9a824ab783c64d15417456d, type: 2}
+  radius: 153
+  material: {fileID: 2100000, guid: f0dcd4469e5f64cd982fab355c0cf165, type: 2}
   noiseLayers:
   - enabled: 1
-    amplitude: 2.06
-    scale: 1.91
+    amplitude: 1.3
+    scale: 3.5
     manipulation:
       serializedVersion: 2
       m_Curve:
@@ -32,35 +32,26 @@ MonoBehaviour:
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-        weightedMode: 3
+        weightedMode: 0
         inWeight: 0
-        outWeight: 0.7449245
-      - serializedVersion: 3
-        time: 0.25855422
-        value: 0.5438445
-        inSlope: 0.0141525455
-        outSlope: 0.0141525455
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0.55925
-        outWeight: 0.5142802
+        outWeight: 0
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
-        weightedMode: 3
-        inWeight: 0.77534443
+        weightedMode: 0
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-      m_RotationOrder: 4
+      m_RotationOrder: 0
     seed:
-      value: -5274
+      value: 2
   - enabled: 1
-    amplitude: 0.75
-    scale: 8.48
+    amplitude: 2.14
+    scale: 0.94
     manipulation:
       serializedVersion: 2
       m_Curve:
@@ -70,32 +61,23 @@ MonoBehaviour:
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-        weightedMode: 3
+        weightedMode: 0
         inWeight: 0
-        outWeight: 0.998004
-      - serializedVersion: 3
-        time: 0.5
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0.4011976
-        outWeight: 0.40119755
+        outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
+        value: 1
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
-        weightedMode: 3
-        inWeight: 1
+        weightedMode: 0
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-      m_RotationOrder: 4
+      m_RotationOrder: 0
     seed:
-      value: 2067
+      value: 2
   showFixEdgeNormals: 0
   showVertexDistributionBias: 0
   showMaterial: 0

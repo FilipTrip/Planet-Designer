@@ -19,7 +19,7 @@ public class Sphere : MonoBehaviour
     [SerializeField, HideInInspector] private SphereType sphereType;
     [SerializeField, HideInInspector] private Planet planet;
 
-    public static UnityEvent<Sphere> RegenerationCompleted = new UnityEvent<Sphere>();
+    public UnityEvent RegenerationCompleted = new UnityEvent();
 
     public SphereSettings Settings { get { return settings; } set { settings = value; } }
     public SphereFace[] SphereFaces => sphereFaces;
@@ -49,8 +49,7 @@ public class Sphere : MonoBehaviour
 
         stopwatch.Stop();
         Debug.Log("Regenerated " + gameObject.name + " (" + stopwatch.ElapsedMilliseconds + "ms)");
-        RegenerationCompleted.Invoke(this);
-
+        RegenerationCompleted.Invoke();
     }
 
     public void Initialize()

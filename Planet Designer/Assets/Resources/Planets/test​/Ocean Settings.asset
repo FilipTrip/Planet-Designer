@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9a301fc43bb45bda3703b0d594caa3, type: 3}
   m_Name: Ocean Settings
   m_EditorClassIdentifier: 
+  sphere: {fileID: 0}
   autoRegenerate: 1
   fixEdgeNormals: 1
-  resolution: 70
   vertexDistributionBias: -0.06
-  radius: 148
-  material: {fileID: 2100000, guid: f43734c79a42c4670a6fd47f9463241f, type: 2}
+  resolution: 80
+  radius: 149.16
+  material: {fileID: 2100000, guid: 296830e6048ec4a699ad473b4d35d1bb, type: 2}
   noiseLayers: []
+  showFixEdgeNormals: 0
+  showVertexDistributionBias: 0
+  showMaterial: 0
+  showNoiseLayers: 1

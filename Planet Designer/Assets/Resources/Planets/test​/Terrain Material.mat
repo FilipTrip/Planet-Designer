@@ -185,18 +185,18 @@ Material:
     - _Grass_Color_Blending: 0.1
     - _Grass_Color_Noise_Scale: 12
     - _Grass_Color_Noise_Strength: 1
-    - _Grass_Color_Variation: 3
+    - _Grass_Color_Variation: 2
     - _Grass_Max_Elevation: 0
     - _Grass_Noise: 1
     - _Grass_Range: 97
-    - _Grass_Scale: 0.3
+    - _Grass_Scale: 0.25
     - _Grass_Variation: 3
-    - _Max_Elevation: 159.22939
+    - _Max_Elevation: 157.58238
     - _Metallic: 0
-    - _Min_Elevation: 145.15335
+    - _Min_Elevation: 146.75658
     - _Noise_Scale: 1
     - _OcclusionStrength: 1
-    - _Ocean_Elevation: 148
+    - _Ocean_Elevation: 149.16
     - _Ocean_Level: 98
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -212,23 +212,23 @@ Material:
     - _Sand_Above_Ocean: 1.25
     - _Sand_Below_Ocean: -10000
     - _Sand_Blending: 0.84
-    - _Sand_Elevation: 0.17
+    - _Sand_Elevation: 0
     - _Sand_Max_Elevation: 0
     - _Sand_Min_Elevation: 0
     - _Sand_Noise: 1
     - _Sand_Noise_Blending: 1.3
     - _Sand_Noise_Scale: 0.05
-    - _Sand_Noise_Strength: 1
+    - _Sand_Noise_Strength: 0.6
     - _Sand_Scale: 0.6
     - _Smoothness: 0.3
     - _SmoothnessTextureChannel: 0
     - _Snow_Blending: 0.15
-    - _Snow_Elevation: 5.44
+    - _Snow_Elevation: -1
     - _Snow_Noise: 3
     - _Snow_Noise_Blending: 0.12
     - _Snow_Noise_Scale: 0.4
-    - _Snow_Noise_Strength: 3.85
-    - _Snow_Scale: 0.41
+    - _Snow_Noise_Strength: 0
+    - _Snow_Scale: 0.2
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0

@@ -18,7 +18,7 @@ public class SphereEditor : Editor
     {
         EditorGUILayout.Space();
 
-        if (GUILayout.Button("Regenerate Sphere"))
+        if (GUILayout.Button("Regenerate"))
             sphere.Regenerate();
 
         EditorGUILayout.Space();

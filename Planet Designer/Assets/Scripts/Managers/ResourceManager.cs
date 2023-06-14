@@ -95,8 +95,8 @@ public class ResourceManager : MonoBehaviour
         planet.OceanSphere.Settings.material = Resources.Load<Material>(planetFolder + "Ocean Material");
         planet.TerrainSphere.Settings.material = Resources.Load<Material>(planetFolder + "Terrain Material");
 
-        planet.OceanSphere.Settings.SetSphere(planet.OceanSphere);
-        planet.TerrainSphere.Settings.SetSphere(planet.TerrainSphere);
+        planet.OceanSphere.Settings.sphere = planet.OceanSphere;
+        planet.TerrainSphere.Settings.sphere = planet.TerrainSphere;
 
         // Load features
 #if UNITY_EDITOR

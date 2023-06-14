@@ -19,7 +19,12 @@ public class SpriteCamera : MonoBehaviour
 
     private void Awake()
     {
-        Sphere.RegenerationCompleted.AddListener((sphere) => { TryCapture(); });
+        Planet.Loaded.AddListener(OnPlanetLoaded);
+    }
+
+    private void OnPlanetLoaded()
+    {
+        Planet.Instance.TerrainSphere.RegenerationCompleted.AddListener(TryCapture);
     }
 
     private void Update()

@@ -116,7 +116,8 @@ public class FeatureManager : MonoBehaviour
     {
         LocalForest localForest = Instantiate(localForestPrefab, Planet.Instance.FeaturesParent).GetComponent<LocalForest>();
         localForest.gameObject.name = forestName;
-        localForest.Initialize(forestSettings, zoneSettings);
+        localForest.Initialize(forestSettings);
+        localForest.InitializeZone(zoneSettings);
         Planet.Instance.Features.Add(localForest);
         return localForest;
     }

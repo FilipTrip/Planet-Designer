@@ -30,9 +30,14 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        Planet.Loaded.AddListener(UpdateMagnitude);
-        Sphere.RegenerationCompleted.AddListener((sphere) => { UpdateMagnitude(); });
+        Planet.Loaded.AddListener(OnPlanetLoaded);
         UpdateLightAndFOV();
+    }
+
+    private void OnPlanetLoaded()
+    {
+        UpdateMagnitude();
+        Planet.Instance.TerrainSphere.RegenerationCompleted.AddListener(UpdateMagnitude);
     }
 
     private void OnValidate()

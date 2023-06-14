@@ -4,7 +4,6 @@ using System.Drawing;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(menuName = "Planet Designer/Zone Settings")]
 public class ZoneSettings : ScriptableObject
 {
     [Range(0f, 5f)]
