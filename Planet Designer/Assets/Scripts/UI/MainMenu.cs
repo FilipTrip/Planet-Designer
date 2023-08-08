@@ -152,9 +152,22 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            newPlanetName.text = newPlanetName.text.Remove(newPlanetName.text.Length - 1);
+
             if (newPlanetName.text.Length > 1)
                 CreatePlanet();
         }  
+    }
+
+    public void RenamePlanetNameOnEndEdit()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            renamePlanetName.text = renamePlanetName.text.Remove(renamePlanetName.text.Length - 1);
+
+            if (renamePlanetName.text.Length > 1)
+                RenameSelectedPlanet();
+        }
     }
 
     public void CreatePlanet()

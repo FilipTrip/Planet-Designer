@@ -3,52 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
+using UnityEditorInternal;
 
 [CustomEditor(typeof(GlobalForestSettings))]
-public class GlobalForestSettingsEditor : Editor
+public class GlobalForestSettingsEditor : ForestEditor
 {
     private GlobalForestSettings globalForestSettings;
 
-    SerializedProperty numberOfObjects;
-    SerializedProperty autoRegenerate;
-    SerializedProperty seed;
-    SerializedProperty density;
-    SerializedProperty coverage;
-    SerializedProperty clusters;
-    SerializedProperty avoidOcean;
-    SerializedProperty avoidObjects;
-    SerializedProperty prefabs;
+    private SerializedProperty density;
 
-    private void OnEnable()
+    private new void OnEnable()
     {
+        base.OnEnable();
         globalForestSettings = (GlobalForestSettings)target;
 
-        numberOfObjects = serializedObject.FindProperty("numberOfObjects");
-        autoRegenerate  = serializedObject.FindProperty("autoRegenerate");
-        seed            = serializedObject.FindProperty("seed");
-        density         = serializedObject.FindProperty("density");
-        coverage        = serializedObject.FindProperty("coverage");
-        clusters        = serializedObject.FindProperty("clusters");
-        avoidOcean      = serializedObject.FindProperty("avoidOcean");
-        avoidObjects    = serializedObject.FindProperty("avoidObjects");
-        prefabs         = serializedObject.FindProperty("prefabs");
+        density = serializedObject.FindProperty("density");
     }
 
     public override void OnInspectorGUI()
     {
         EditorGUILayout.Space();
-
-        if (GUILayout.Button("Regenerate"))
-            globalForestSettings.forest.Regenerate();
-
-        EditorGUILayout.Space();
+        EditorGUILayout.BeginHorizontal();
+        base.DeleteButton();
+        base.RegenerateButton();
+        EditorGUILayout.EndHorizontal();
+        base.HorizontalLine();
 
         using (var check = new EditorGUI.ChangeCheckScope())
         {
-            //base.OnInspectorGUI();
-
             serializedObject.Update();
-            EditorGUILayout.PropertyField(numberOfObjects);
             EditorGUILayout.PropertyField(autoRegenerate);
             EditorGUILayout.PropertyField(seed);
             EditorGUILayout.PropertyField(density);
@@ -56,14 +39,16 @@ public class GlobalForestSettingsEditor : Editor
             EditorGUILayout.PropertyField(clusters);
             EditorGUILayout.PropertyField(avoidOcean);
             EditorGUILayout.PropertyField(avoidObjects);
-            EditorGUILayout.PropertyField(prefabs);
+            base.DrawSmartPrefabList();
+            base.DrawInfo();
             serializedObject.ApplyModifiedProperties();
 
-            if (check.changed && globalForestSettings)
+            if (check.changed && Planet.Instance)
             {
                 globalForestSettings.forest.UpdateLayerMask();
                 globalForestSettings.forest.AutoRegenerate();
             }  
         }
     }
+
 }

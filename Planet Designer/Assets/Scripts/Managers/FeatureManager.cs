@@ -108,8 +108,10 @@ public class FeatureManager : MonoBehaviour
 
     public void Remove(Feature feature)
     {
-        Debug.Log("Feature removed: " + gameObject.name);
-        Planet.Instance.RemoveFeature(feature);
+        Debug.Log("Feature removed: " + feature.name);
+        Planet.Instance.Features.Remove(feature);
+        Destroy(feature.gameObject);
+        ResourceManager.Instance.DeleteFeature(Planet.Instance.PlanetName, feature.name);
     }
 
     public LocalForest AddLocalForest(string forestName, LocalForestSettings forestSettings, ZoneSettings zoneSettings)

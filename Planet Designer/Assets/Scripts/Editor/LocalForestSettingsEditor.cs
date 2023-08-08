@@ -1,36 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
 [CustomEditor(typeof(LocalForestSettings))]
-public class LocalForestSettingsEditor : Editor
+public class LocalForestSettingsEditor : ForestEditor
 {
-    private LocalForestSettings globalForestSettings;
+    private LocalForestSettings localForestSettings;
 
-    private void OnEnable()
+    private new void OnEnable()
     {
-        globalForestSettings = (LocalForestSettings)target;
+        base.OnEnable();
+        localForestSettings = (LocalForestSettings)target;
     }
 
     public override void OnInspectorGUI()
     {
         EditorGUILayout.Space();
-
-        if (GUILayout.Button("Regenerate"))
-            globalForestSettings.forest.Regenerate();
-
-        EditorGUILayout.Space();
+        EditorGUILayout.BeginHorizontal();
+        base.DeleteButton();
+        base.RegenerateButton();
+        ClearButton();
+        EditorGUILayout.EndHorizontal();
+        base.HorizontalLine();
 
         using (var check = new EditorGUI.ChangeCheckScope())
         {
-            base.OnInspectorGUI();
+            serializedObject.Update();
+            EditorGUILayout.PropertyField(autoRegenerate);
+            EditorGUILayout.PropertyField(seed);
+            EditorGUILayout.PropertyField(coverage);
+            EditorGUILayout.PropertyField(clusters);
+            EditorGUILayout.PropertyField(avoidOcean);
+            EditorGUILayout.PropertyField(avoidObjects);
+            base.DrawSmartPrefabList();
+            base.DrawInfo();
+            serializedObject.ApplyModifiedProperties();
 
-            if (check.changed && globalForestSettings)
+            if (check.changed && Planet.Instance)
             {
-                globalForestSettings.forest.UpdateLayerMask();
-                globalForestSettings.forest.AutoRegenerate();
+                localForestSettings.forest.UpdateLayerMask();
+                localForestSettings.forest.AutoRegenerate();
             }
         }
+    }
+
+    private void ClearButton()
+    {
+        GUI.enabled = BelongsToLoadedPlanet();
+
+        if (GUILayout.Button("Clear"))
+        {
+            localForestSettings.forest.GetComponent<Zone>().Clear();
+        }
+
+        GUI.enabled = true;
     }
 }

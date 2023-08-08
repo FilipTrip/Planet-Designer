@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour
         if (!Planet.Instance)
             return;
 
-        transform.position = transform.position.normalized * Planet.Instance.TerrainSphere.Settings.radius * distance;
+        transform.position = transform.position.normalized * Planet.Instance.SurfaceSettings.terrainRadius * distance;
     }
 
     private void UpdateLightAndFOV()
@@ -59,6 +59,11 @@ public class CameraController : MonoBehaviour
         cameraLight.intensity = lightIntensityOverDistance.Evaluate(distance);
         cameraLight.intensity *= Vector3.Dot(sceneLight.transform.forward, cameraLight.transform.forward).Remapped(-1f, 1f, 1f, 0f).Smoothstep();
         camera.fieldOfView = fieldOfViewOverDistance.Evaluate(distance);
+
+        camera.farClipPlane = transform.position.magnitude;
+
+        if (Planet.Instance)
+            camera.farClipPlane += Planet.Instance.SurfaceSettings.terrainRadius * 0.5f;
     }
 
     private void Update()
@@ -124,7 +129,7 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.zero;
             transform.Rotate(new Vector3(1f, 0f, 0f), direction.y * 180f);
             transform.Rotate(new Vector3(0f, 1f, 0f), direction.x * -180f, Space.World);
-            transform.Translate(new Vector3(0f, 0f, Planet.Instance.TerrainSphere.Settings.radius * -distance));
+            transform.Translate(new Vector3(0f, 0f, Planet.Instance.SurfaceSettings.terrainRadius * -distance));
             
         }
     }

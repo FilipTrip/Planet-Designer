@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering;
 using Debug = UnityEngine.Debug;
 
 [ExecuteAlways]
@@ -12,6 +11,7 @@ public class Planet : MonoBehaviour
     [SerializeField, ReadOnly] private string planetName;
     [SerializeField, ReadOnly] private bool initialized;
 
+    [SerializeField] private SurfaceSettings surfaceSettings;
     [SerializeField] private Sphere oceanSphere;
     [SerializeField] private Sphere terrainSphere;
     [SerializeField] private Transform featuresParent;
@@ -24,6 +24,7 @@ public class Planet : MonoBehaviour
     public static UnityEvent Loaded = new UnityEvent();
 
     public string PlanetName { get { return planetName; } set { planetName = value; } }
+    public SurfaceSettings SurfaceSettings { get { return surfaceSettings; } set { surfaceSettings = value; } }
     public Sphere TerrainSphere => terrainSphere;
     public Sphere OceanSphere => oceanSphere;
     public Transform FeaturesParent => featuresParent;
@@ -45,6 +46,14 @@ public class Planet : MonoBehaviour
 
         terrainSphere.Initialize();
         oceanSphere.Initialize();
+
+        terrainSphere.RegenerationCompleted.AddListener(oceanSphere.AutoRegenerate);
+    }
+
+    public void AutoRegenerate()
+    {
+        if (surfaceSettings.autoRegenerate)
+            Regenerate();
     }
 
     [ContextMenu("Regenerate")]
@@ -54,45 +63,26 @@ public class Planet : MonoBehaviour
             return;
 
         Stopwatch stopwatch = Stopwatch.StartNew();
-
         terrainSphere.Regenerate();
-        oceanSphere.Regenerate();
-        RegenerateFeatures();
 
         stopwatch.Stop();
         Debug.Log("Regenerated " + gameObject.name + " (" + stopwatch.ElapsedMilliseconds + "ms)");
         RegenerationCompleted.Invoke();
     }
 
-    public void RegenerateFeatures()
-    {
-        foreach (Feature feature in features)
-            feature.Regenerate();
-    }
-
-    public void RemoveFeature(Feature feature)
-    {
-        features.Remove(feature);
-        Destroy(feature.gameObject);
-        ResourceManager.Instance.DeleteFeature(planetName, feature.name);
-    }
-
     public void RandomizeSeeds()
     {
         // Randomize seeds for all noise layers
 
-        foreach (NoiseLayer noiseLayer in terrainSphere.Settings.noiseLayers)
-            noiseLayer.seed.New();
-
-        foreach (NoiseLayer noiseLayer in oceanSphere.Settings.noiseLayers)
+        foreach (NoiseLayer noiseLayer in surfaceSettings.terrainNoiseLayers)
             noiseLayer.seed.New();
 
         // Look for all seeds in features and randomize them
 
-        LocalForest forest;
-        foreach (Transform feature in featuresParent)
+        Forest forest;
+        foreach (Feature feature in features)
         {
-            if (forest = feature.GetComponent<LocalForest>())
+            if (forest = feature.GetComponent<Forest>())
                 forest.Settings.seed.New();
         }
     }

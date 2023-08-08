@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 5
+  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -23,6 +23,8 @@ Material:
   m_Name: Terrain Material
   m_Shader: {fileID: -6465566751694194690, guid: 718035339ff22496c9effb1b8b171026,
     type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -31,6 +33,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -181,25 +184,29 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Grass_Blending: 0.1
     - _Grass_Color_Blending: 0.1
     - _Grass_Color_Noise_Scale: 12
     - _Grass_Color_Noise_Strength: 1
     - _Grass_Color_Variation: 2
     - _Grass_Max_Elevation: 0
+    - _Grass_Noise: 1
     - _Grass_Range: 97
     - _Grass_Scale: 0.25
-    - _Max_Elevation: 120.00002
+    - _Grass_Variation: 3
+    - _Max_Elevation: 150.00002
     - _Metallic: 0
-    - _Min_Elevation: 119.999985
+    - _Min_Elevation: 149.99998
     - _Noise_Scale: 1
     - _OcclusionStrength: 1
-    - _Ocean_Elevation: 116
+    - _Ocean_Elevation: 142.5
     - _Ocean_Level: 98
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Rock_Blending: 0.2
+    - _Rock_Noise: 0.3
     - _Rock_Noise_Blending: 0.1
     - _Rock_Noise_Scale: 2
     - _Rock_Noise_Strength: 0.2
@@ -211,13 +218,16 @@ Material:
     - _Sand_Elevation: 0
     - _Sand_Max_Elevation: 0
     - _Sand_Min_Elevation: 0
+    - _Sand_Noise: 1
     - _Sand_Noise_Blending: 1.3
     - _Sand_Noise_Scale: 0.05
     - _Sand_Noise_Strength: 0.6
     - _Sand_Scale: 0.6
     - _Smoothness: 0.3
     - _SmoothnessTextureChannel: 0
-    - _Snow_Elevation: -1
+    - _Snow_Blending: 0.15
+    - _Snow_Elevation: -2
+    - _Snow_Noise: 3
     - _Snow_Noise_Blending: 0.12
     - _Snow_Noise_Scale: 0.4
     - _Snow_Noise_Strength: 0

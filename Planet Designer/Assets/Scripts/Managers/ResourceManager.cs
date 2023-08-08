@@ -20,6 +20,21 @@ public class ResourceManager : MonoBehaviour
             slash = '/';
         else
             slash = '\\';
+
+        /*
+        foreach (string planetName in GetSubdirectoryNames("Planets"))
+            UpdatePlanet("Planets", planetName);
+
+        foreach (string planetName in GetSubdirectoryNames("Presets"))
+            UpdatePlanet("Presets", planetName);
+        */
+    }
+
+    private void UpdatePlanet(string folderName, string planetName)
+    {
+        // ...
+
+        Debug.Log(folderName + "/" + planetName + " updated");
     }
 
     /// <summary>
@@ -89,14 +104,11 @@ public class ResourceManager : MonoBehaviour
         planet.Initialize();
 
         // Link settings and material resources
-        planet.OceanSphere.Settings = Resources.Load<SphereSettings>(planetFolder + "Ocean Settings");
-        planet.TerrainSphere.Settings = Resources.Load<SphereSettings>(planetFolder + "Terrain Settings");
-
-        planet.OceanSphere.Settings.material = Resources.Load<Material>(planetFolder + "Ocean Material");
-        planet.TerrainSphere.Settings.material = Resources.Load<Material>(planetFolder + "Terrain Material");
-
-        planet.OceanSphere.Settings.sphere = planet.OceanSphere;
-        planet.TerrainSphere.Settings.sphere = planet.TerrainSphere;
+        planet.SurfaceSettings = Resources.Load<SurfaceSettings>(planetFolder + "Surface Settings");
+        planet.SurfaceSettings.UpdateOceanRadius();
+        
+        planet.SurfaceSettings.oceanMaterial = Resources.Load<Material>(planetFolder + "Ocean Material");
+        planet.SurfaceSettings.terrainMaterial = Resources.Load<Material>(planetFolder + "Terrain Material");
 
         // Load features
 #if UNITY_EDITOR
@@ -140,10 +152,9 @@ public class ResourceManager : MonoBehaviour
         planet.Regenerate();
         Planet.Loaded.Invoke();
 
-        #if UNITY_EDITOR
-        Selection.activeObject = planet.TerrainSphere.Settings;
-        //EditorGUIUtility.PingObject(planet.TerrainSphere.gameObject);
-        #endif
+#if UNITY_EDITOR
+        Selection.activeObject = planet.SurfaceSettings;
+#endif
     }
 
     /// <summary>
@@ -190,12 +201,13 @@ public class ResourceManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Deletes a feature of a planet
+    /// Deletes a feature of a planet using the name of the planet and feature
     /// </summary>
     public void DeleteFeature(string planetName, string featureName)
     {
 #if UNITY_EDITOR
-        AssetDatabase.DeleteAsset("Assets" + slash + "Resources" + slash + "Planets" + slash + planetName + slash + "Features" + slash + featureName);
+        string featureFolderPath = "Assets" + slash + "Resources" + slash + "Planets" + slash + planetName + slash + "Features" + slash + featureName;
+        AssetDatabase.DeleteAsset(featureFolderPath);
 #endif
     }
 

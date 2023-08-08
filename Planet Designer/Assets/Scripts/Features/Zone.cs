@@ -65,14 +65,14 @@ public class Zone : MonoBehaviour
                 Vector3 newPoint = DirectionOffsetter.Offset(Reticle.Instance.transform.position, Reticle.Instance.BrushAngle, true);
 
                 // Make sure point is not too close to any other point
-                if (Clear())
+                if (RadiusCheck())
                 {
                     // Add point
                     settings.points.Add(newPoint);
                     affectedPoints.Add(newPoint);
                 }
 
-                bool Clear()
+                bool RadiusCheck()
                 {
                     // Check newer points first (since they are more likely to block new points)
                     for (int i = settings.points.Count - 1; i >= 0; --i)
@@ -93,7 +93,7 @@ public class Zone : MonoBehaviour
             // Update feature if points where added
             if (affectedPoints.Count != 0)
             {
-                // Use smart regeneration if feature is forest
+                // Use smart regeneration if feature is local forest
                 LocalForest forest;
                 if (forest = feature.GetComponent<LocalForest>())
                     forest.SmartRegen_PlaceTrees(affectedPoints);
@@ -107,9 +107,15 @@ public class Zone : MonoBehaviour
         #endif
     }
 
+    public void Clear()
+    {
+        settings.points.Clear();
+        feature.Regenerate();
+    }
+
     private void OnDrawGizmos()
     {
-        float radius = Planet.Instance.TerrainSphere.Settings.radius;
+        float radius = Planet.Instance.SurfaceSettings.terrainRadius;
         float pointRadius = Vector2.Distance(new Vector2(0, radius), new Vector2(0, radius).RotateAroundZero(settings.pointAngle * Mathf.Deg2Rad));
 
         Gizmos.color = new Color(1f, 1f, 1f, 0.5f);

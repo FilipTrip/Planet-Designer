@@ -81,7 +81,7 @@ public class Reticle : MonoBehaviour
 
             // Update brush scale
 
-            float planetRadius = Planet.Instance.TerrainSphere.Settings.radius;
+            float planetRadius = Planet.Instance.SurfaceSettings.terrainRadius;
             float brushRadius = (new Vector2(0, planetRadius) - new Vector2(0, planetRadius).RotateAroundZero(brushAngle * Mathf.Deg2Rad)).x;
             brush.transform.localScale = new Vector3(brushRadius * 2f, planetRadius, brushRadius * 2f);
 

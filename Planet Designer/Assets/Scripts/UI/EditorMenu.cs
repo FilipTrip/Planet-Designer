@@ -34,31 +34,24 @@ public class EditorMenu : MonoBehaviour
 
     // Button actions
 
-    public void SelectTerrainSphere()
+    public void SelectSurface()
     {
         #if UNITY_EDITOR
-        Selection.activeObject = Planet.Instance.TerrainSphere.Settings;
+        Selection.activeObject = Planet.Instance.SurfaceSettings;
         #endif
     }
 
     public void SelectTerrainMaterial()
     {
         #if UNITY_EDITOR
-        Selection.activeObject = Planet.Instance.TerrainSphere.Settings.material;
-        #endif
-    }
-
-    public void SelectOceanSphere()
-    {
-        #if UNITY_EDITOR
-        Selection.activeObject = Planet.Instance.OceanSphere.Settings;
+        Selection.activeObject = Planet.Instance.SurfaceSettings.terrainMaterial;
         #endif
     }
 
     public void SelectOceanMaterial()
     {
         #if UNITY_EDITOR
-        Selection.activeObject = Planet.Instance.OceanSphere.Settings.material;
+        Selection.activeObject = Planet.Instance.SurfaceSettings.oceanMaterial;
         #endif
     }
 

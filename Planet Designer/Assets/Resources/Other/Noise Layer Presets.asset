@@ -1,0 +1,402 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e218b7a05b0744a48b399d1193ff8f0, type: 3}
+  m_Name: Noise Layer Presets
+  m_EditorClassIdentifier: 
+  presets:
+  - name: Basic
+    noiseLayer:
+      enabled: 1
+      scale: 4
+      amplitude: 2
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      seed:
+        value: 0
+  - name: Veins/Small
+    noiseLayer:
+      enabled: 1
+      scale: 8
+      amplitude: 1.5
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.998004
+        - serializedVersion: 3
+          time: 0.5
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.4011976
+          outWeight: 0.40119755
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 1
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      seed:
+        value: 0
+  - name: Veins/Large
+    noiseLayer:
+      enabled: 1
+      scale: 2
+      amplitude: 3
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.998004
+        - serializedVersion: 3
+          time: 0.5
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.4011976
+          outWeight: 0.40119755
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 1
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      seed:
+        value: 0
+  - name: Continents/Small
+    noiseLayer:
+      enabled: 1
+      scale: 4
+      amplitude: 2
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0.0032906404
+          outSlope: 0.0032906404
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.74536973
+        - serializedVersion: 3
+          time: 1
+          value: 0.7
+          inSlope: 0.001380953
+          outSlope: 0.001380953
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.7887759
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      seed:
+        value: 0
+  - name: Continents/Large
+    noiseLayer:
+      enabled: 1
+      scale: 2
+      amplitude: 3
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0.0032906404
+          outSlope: 0.0032906404
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.74536973
+        - serializedVersion: 3
+          time: 1
+          value: 0.7
+          inSlope: 0.001380953
+          outSlope: 0.001380953
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.7887759
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      seed:
+        value: 0
+  - name: Rivers/Small
+    noiseLayer:
+      enabled: 1
+      scale: 3
+      amplitude: 3
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.29696193
+          outWeight: 0.37924153
+        - serializedVersion: 3
+          time: 0.4
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.37128013
+        - serializedVersion: 3
+          time: 0.5
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.46591768
+          outWeight: 0.36789814
+        - serializedVersion: 3
+          time: 0.6
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.23938616
+          outWeight: 0.40577582
+        - serializedVersion: 3
+          time: 1
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.25440824
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      seed:
+        value: 0
+  - name: Rivers/Large
+    noiseLayer:
+      enabled: 1
+      scale: 1.2
+      amplitude: 4
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.29696193
+          outWeight: 0.37924153
+        - serializedVersion: 3
+          time: 0.4
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.37128013
+        - serializedVersion: 3
+          time: 0.5
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.46591768
+          outWeight: 0.36789814
+        - serializedVersion: 3
+          time: 0.6
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.23938616
+          outWeight: 0.40577582
+        - serializedVersion: 3
+          time: 1
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.25440824
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      seed:
+        value: 0
+  - name: Craters/Small
+    noiseLayer:
+      enabled: 1
+      scale: 5
+      amplitude: 2.5
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.292016
+          value: 0.5
+          inSlope: 0.006492193
+          outSlope: 0.006492193
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.33333334
+          outWeight: 0.5965069
+        - serializedVersion: 3
+          time: 0.796008
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.14794342
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0.4
+          inSlope: 0.003788536
+          outSlope: 0.003788536
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.8397789
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      seed:
+        value: 0
+  - name: Craters/Large
+    noiseLayer:
+      enabled: 1
+      scale: 2
+      amplitude: 3
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.44570863
+          value: 0.5
+          inSlope: 0.006492193
+          outSlope: 0.006492193
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.33333334
+          outWeight: 0.5965069
+        - serializedVersion: 3
+          time: 0.79002
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.14794342
+          outWeight: 0.23003793
+        - serializedVersion: 3
+          time: 1
+          value: 0.4
+          inSlope: -0.0032581782
+          outSlope: -0.0032581782
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 1
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      seed:
+        value: 0

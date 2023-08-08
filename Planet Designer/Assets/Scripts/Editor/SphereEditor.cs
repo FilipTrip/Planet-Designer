@@ -31,7 +31,7 @@ public class SphereEditor : Editor
                 sphere.AutoRegenerate();
         }
 
-        DrawScriptableObjectEditor(sphere.Settings, ref sphereSettingsEditor);
+        //DrawScriptableObjectEditor(sphere.Settings, ref sphereSettingsEditor);
     }
 
     private void DrawScriptableObjectEditor(Object scriptableObject, ref Editor editor)

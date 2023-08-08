@@ -24,7 +24,8 @@ public class SpriteCamera : MonoBehaviour
 
     private void OnPlanetLoaded()
     {
-        Planet.Instance.TerrainSphere.RegenerationCompleted.AddListener(TryCapture);
+        Planet.RegenerationCompleted.AddListener(TryCapture);
+        TryCapture();
     }
 
     private void Update()
@@ -59,7 +60,7 @@ public class SpriteCamera : MonoBehaviour
 
         Stopwatch stopwatch = Stopwatch.StartNew();
 
-        geographicTransform.magnitude = Planet.Instance.TerrainSphere.Settings.radius * distance;
+        geographicTransform.magnitude = Planet.Instance.SurfaceSettings.terrainRadius * distance;
         geographicTransform.UpdateTransform();
         transform.LookAt(Vector3.zero);
 
