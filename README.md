@@ -13,6 +13,13 @@ This Unity tool generates game worlds in the form of planets. The tool was origi
 
 ![HelpMenu](Images/Help_menu.jpg)
 
+## How to run
+
+- Download this git repository
+- Open Unity Hub and make sure you have Unity 2022.3.5f1 or later installed
+- In Unity Hub: click "Open" and select the "Planet Designer" folder
+- Run the project through the Unity Editor
+
 ## Help
 
 I get the following error when opening the project on Windows:
